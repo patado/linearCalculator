@@ -124,6 +124,7 @@ public class Individual {
                        break;
                    case '8':allergyArrayList.add(new Ingredient ("Wheat"));
                        break;
+                       
                }
             }
             
@@ -150,6 +151,8 @@ public class Individual {
         System.out.println("\nPlease select relevant numbers for the family member(s) you want to remove:");
         for (int i=0 ; i<family.size() ; i++)
             System.out.print(i+". "+(family.get(i).toString()));
+        
+        Admin.menuStart();
     
     }
     
