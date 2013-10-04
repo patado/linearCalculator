@@ -138,12 +138,18 @@ public class Individual {
             family.add(person);
         }
         
+        System.out.print("\n");
         for (int i=0 ; i<family.size() ; i++)
-            System.out.print(family.get(i).toString());
+            System.out.println(family.get(i).toString());
+        
+        Admin.menuStart();
     
     }
     
     public void removePeople(){
+        System.out.println("\nPlease select relevant numbers for the family member(s) you want to remove:");
+        for (int i=0 ; i<family.size() ; i++)
+            System.out.print(i+". "+(family.get(i).toString()));
     
     }
     
