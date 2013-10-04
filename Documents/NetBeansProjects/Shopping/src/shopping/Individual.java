@@ -14,11 +14,15 @@ import java.util.Scanner;
 public class Individual {
     
     Scanner sc = new Scanner (System.in);
-    static ArrayList <Individual> family;
+    static ArrayList <Individual> family = new ArrayList();
     
     String name;
     ArrayList <Ingredient> allergies;
     boolean vegetarian;
+    
+    Individual(){
+        initGuest();
+    }
     
     Individual(String name){
         this.name = name;
@@ -41,22 +45,22 @@ public class Individual {
         return "Individual{" + "name=" + name + ", allergies=" + allergies + ", vegetarian=" + vegetarian + '}';
     }
 
-    public static void initGuest (){
-        System.out.println("At present ");
+    public void initGuest (){
+        System.out.print("\nAt present ");
         for (int i=0 ; i<family.size() ; i++)
             System.out.print((family.get(i).name)+", ");
         if (family.size()>1)
-            System.out.println("are");
+            System.out.print("are");
         else if (family.isEmpty())
-            System.out.println("nobody is");
+            System.out.print("nobody is");
         else
-            System.out.println("is");
+            System.out.print("is");
             
         System.out.println(" living at home. ");
         
         if (family.size()>1)
         {
-            System.out.println("Do you want to remove / add people?");
+            System.out.println("\nDo you want to remove / add people?");
             System.out.println("type 1 to add");
             System.out.println("type 2 to remove");
             System.out.println("type 0 to exit");
@@ -68,15 +72,15 @@ public class Individual {
             System.out.println("type 0 to exit");
         }
         
-//        int optionAddPeople = sc.nextInt();
-//        
-//        switch (optionAddPeople){
-//            case 0: return;
-//            case 1: addPeople();
-//                break;
-//            case 2: removePeople();
-//        }
-//        
+        int optionAddPeople = sc.nextInt();
+        
+        switch (optionAddPeople){
+            case 0: return;
+            case 1: addPeople();
+                break;
+            case 2: removePeople();
+        }
+        
             
     }
     
@@ -85,7 +89,7 @@ public class Individual {
         int numberPeople = sc.nextInt();
         for (int i=0 ; i<numberPeople ; i++)
         {
-            System.out.println("Name of the individual?");
+            System.out.println("\nName of the individual?");
             String name = sc.next();
             System.out.println("If "+name+" is subject to allergies, please enter all relevant numbers");
             System.out.println("1. Peanuts");
@@ -104,33 +108,38 @@ public class Individual {
             {
                switch (allergy.charAt(j))
                {
-                   case 1:allergyArrayList.add(new Ingredient ("Peanut"));
+                   case '1':allergyArrayList.add(new Ingredient ("Peanut"));
                        break;
-                   case 2:allergyArrayList.add(new Ingredient ("Nut"));
+                   case '2':allergyArrayList.add(new Ingredient ("Nut"));
                        break;
-                   case 3:allergyArrayList.add(new Ingredient ("Egg"));
+                   case '3':allergyArrayList.add(new Ingredient ("Egg"));
                        break;
-                   case 4:allergyArrayList.add(new Ingredient ("Milk"));
+                   case '4':allergyArrayList.add(new Ingredient ("Milk"));
                        break;
-                   case 5:allergyArrayList.add(new Ingredient ("Fish"));
+                   case '5':allergyArrayList.add(new Ingredient ("Fish"));
                        break;
-                   case 6:allergyArrayList.add(new Ingredient ("Shellfish"));
+                   case '6':allergyArrayList.add(new Ingredient ("Shellfish"));
                        break;
-                   case 7:allergyArrayList.add(new Ingredient ("Soy"));
+                   case '7':allergyArrayList.add(new Ingredient ("Soy"));
                        break;
-                   case 8:allergyArrayList.add(new Ingredient ("Wheat"));
+                   case '8':allergyArrayList.add(new Ingredient ("Wheat"));
                        break;
                }
             }
             
             System.out.println("Is "+name+" a vegetarian? (yes/no)");
             String vegString = sc.next();
-            boolean veg = false;
-            if (vegString == "Yes" | vegString == "yes")
+            
+            boolean veg=false;
+            if (vegString.equals("Yes") | vegString.equals("yes") | vegString.equals("y") | vegString.equals("Y"))
                 veg=true;
             
             Individual person = new Individual(name, allergyArrayList, veg);
+            family.add(person);
         }
+        
+        for (int i=0 ; i<family.size() ; i++)
+            System.out.print(family.get(i).toString());
     
     }
     
